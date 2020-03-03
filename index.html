@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JS-Clock</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="clock_frame">
+    <span id="clock_date"></span>
+    <span id="clock_time"></span>
+  </div>
+
+  <script>
+    function clock()
+    {
+      //曜日の配列
+      let weeks = new Array("Sun", "Mon", "Thu", "Wed", "Thr", "Fri", "Sat");
+      //現在日時を表すインスタンスを取得
+      let now = new Date();
+      //年
+      let y = now.getFullYear();
+      //月
+      let mo = now.getMonth() + 1;
+      //日
+      let d = now.getDate();
+      //曜日
+      let w = weeks[now.getDay()];
+      //時
+      let h = now.getHours();
+      //分
+      let mi = now.getMinutes();
+      //秒
+      let s = now.getSeconds();
+
+      if (mo < 10)
+        mo = "0" + mo;
+      if (d < 10)
+        d = "0" + d;
+      if (mi < 10)
+        mi = "0" + mi;
+      if (s < 10)
+        s = "0" + s;
+
+      document.getElementById("clock_date").innerHTML = y + "/" + mo + "/" + d + "/" + "(" + w + ")";
+      document.getElementById("clock_time").innerHTML = h + ":" + mi + ":" + s;
+
+      document.getElementById("clock_frame").style.fontSize = window.innerWidth / 10 + "px";
+    }
+
+    setInterval(clock, 1000);
+  </script>
+  
+</body>
+</html>
